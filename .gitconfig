@@ -1,6 +1,6 @@
 [user]
-    name = nkwsqyyzx
-    email = nk.wangshuangquan@gmail.com
+	name = zhangxingyu
+	email = zhangxingyu@baidu.com
 [color]
     diff = auto
     status = auto
@@ -24,19 +24,19 @@
 [log]
     date = local
 [diff]
-    tool = diffmerge
-[difftool "diffmerge"]
+    tool = smartsynchronize
+[difftool "smartsynchronize"]
     cmd = ~/.sys.config/diffmerge-diff.sh \"$LOCAL\" \"$REMOTE\"
     prompt = false
-[difftool "bc4"]
-    cmd = bcomp \"$LOCAL\" \"$REMOTE\"
+[difftool "smartsynchronize"]
+    cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize "$LOCAL" "$REMOTE"
 [merge]
     tool = gvimdiff
 [mergetool "gvimdiff"]
     cmd = gvim -f -d $MERGED $LOCAL $REMOTE
     trustExitCode = false
 [core]
-    excludesfile = ~/.sys.config/.gitignore_global
+	excludesfile = /Users/baidu/.gitignore_global
     whitespace = cr-at-eol
     quotepath = false
     editor = ~/.sys.config/gitEditor.sh
@@ -62,5 +62,9 @@
     trustExitCode = false
 [mergetool]
     keepBackup = false
-[difftool "p4mergetool"]
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[mergetool "sourcetree"]
+	cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+[difftool "sourcetree"]
+	cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize \"$LOCAL\" \"$REMOTE\"
+	path = 

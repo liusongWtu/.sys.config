@@ -6,6 +6,7 @@ alias gap='git add -p'
 alias gau='git add -u'
 alias gb='git branch'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gca='git commit -a'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
@@ -14,20 +15,23 @@ alias gd='git diff'
 alias gdc='git diff --color'
 alias gdr='git_recursive_diff'
 alias gds='git diff --staged'
-alias gdt='git difftool'
+alias gdt='git difftool --dir-diff'
+alias gdiff='git difftool --dir-diff HEAD HEAD~'
 alias gf='git fetch'
 alias gfr='git fetch;git rebase;'
 alias gg='git lg'
 alias ggrep='git grep'
+alias gignore='git update-index --assume-unchanged'
 alias glp='git log -p'
 alias gm='git merge'
 alias go='git checkout'
+alias gpush='git push origin HEAD:dev;'
 alias gr='git rebase'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias gri='git rebase -i'
 alias gro='git rebase -i --onto'
-alias gs='git status'
+alias gs='git stash'
 alias gsfrs='git stash;git fetch;git rebase;git stash pop;'
 alias gsp='git stash pop'
 alias gsr='git_recursive_status'
@@ -252,7 +256,7 @@ function kgitx() {
     local pids=$(ps -A|grep GitX|grep -v grep|awk '{print $1}')
     echo "$pids"|while read -r pid;
     do
-        if [[ -n "$pid" ]]; then
+       if [[ -n "$pid" ]]; then
             kill -9 $pid
         fi
     done
@@ -274,4 +278,12 @@ function git_get_svn_revision() {
     local from="$1"
     [[ -z "$1" ]] && from="HEAD"
     git log --max-count=1 "$from"|grep 'git-svn-id:'|awk -F'@' '{print $2}'|column 1
+}
+
+function gnext() {
+    git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+}
+
+function gprevious() {
+    git checkout HEAD^1
 }
