@@ -26,17 +26,17 @@
 [diff]
     tool = smartsynchronize
 [difftool "smartsynchronize"]
-    cmd = ~/.sys.config/diffmerge-diff.sh \"$LOCAL\" \"$REMOTE\"
-    prompt = false
-[difftool "smartsynchronize"]
     cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize "$LOCAL" "$REMOTE"
+[difftool]
+    prompt = false
 [merge]
-    tool = gvimdiff
-[mergetool "gvimdiff"]
-    cmd = gvim -f -d $MERGED $LOCAL $REMOTE
-    trustExitCode = false
+    tool = smartsynchronize
+[mergetool "smartsynchronize"]
+	cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = false
+    keepBackup = false
 [core]
-	excludesfile = /Users/baidu/.gitignore_global
+	excludesfile = /Users/zxy/.gitignore_global
     whitespace = cr-at-eol
     quotepath = false
     editor = ~/.sys.config/gitEditor.sh
@@ -47,24 +47,5 @@
     encoding = utf-8
 [push]
     default = current
-[mergetool "diffmerge"]
-    cmd = ~/.sys.config/diffmerge-merge.sh \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-    trustExitCode = true
 [grep]
     lineNumber = true
-[difftool]
-    prompt = false
-[mergetool "bc4"]
-    cmd = bcomp \"$LOCAL\" \"$REMOTE\"
-    trustExitCode = false
-[mergetool "p4mergetool"]
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-    trustExitCode = false
-[mergetool]
-    keepBackup = false
-[mergetool "sourcetree"]
-	cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize \"$LOCAL\" \"$REMOTE\"
-	trustExitCode = true
-[difftool "sourcetree"]
-	cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize \"$LOCAL\" \"$REMOTE\"
-	path = 
