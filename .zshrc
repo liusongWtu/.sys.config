@@ -25,3 +25,9 @@ rm -rf .zcompdump*
 
 source ~/.sys.config/common.sh
 source ~/.sys.config/dirmark/zsh.sh
+
+export NVM_DIR="/Users/zxy/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source ~/.nvm/nvm.sh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
