@@ -1,4 +1,4 @@
-plugins=(web-search bundler rake)
+plugins=(web-search bundler rake git osx)
 
 ZSH=$HOME/.oh-my-zsh
 
@@ -31,3 +31,6 @@ export NVM_DIR="/Users/zxy/.nvm"
 source ~/.nvm/nvm.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+source $(brew --prefix)/etc/profile.d/autojump.sh
+fpath=(/usr/local/share/zsh-completions $fpath)
