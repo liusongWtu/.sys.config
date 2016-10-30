@@ -67,5 +67,16 @@ function ow()
     fi
 }
 
+function bsgrep()
+{
+#如果不指定文件名，默认是当前目录下递归搜索，否则在指定文件名中搜索
+    if [ $# -eq 1 ]; then
+        grep -rna "$1" .
+    else
+        echo "$pwd/$2
+        grep -na "$1" "$pwd/$2"
+    fi
+}
+
 BASEDIR=$(dirname $0)
 [[ -L "$BASEDIR"/bin/gvim ]] || (cd "$BASEDIR"/bin/;ln -s mac_vim_startup_script gvim)
