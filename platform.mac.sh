@@ -73,8 +73,30 @@ function bsgrep()
     if [ $# -eq 1 ]; then
         grep -rna "$1" .
     else
-        echo "$pwd/$2
         grep -na "$1" "$pwd/$2"
+    fi
+}
+
+function h() {
+    function isNum(){
+        if [ $1 -ge 0 ] && [ $1 -le 1000000 ]; then
+            return 0 # 0 means true
+        else
+            return 1 #1 means false
+        fi
+    }
+    if isNum $1; then
+        list=$(history | tail -10)
+        array=("${(@s/ /)list}")
+        n=0
+        for i in ${array[@]}; do
+            echo "$n $i"
+            ((n=n+1))
+            echo "end"
+        done
+        echo "number"
+    else
+        echo "letter"
     fi
 }
 
