@@ -98,6 +98,10 @@ function h() {
     else
         echo "letter"
     fi
+function h(){
+    history | grep --color=always $1 | awk '{$1="";print $0}' | sort | uniq -c | sort -rn | awk '{$1="";print NR " " $0}' | tee ~/.histfile_color_result | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g" | awk '{$1="";print "function " NR "() {" $0 " }"}' | {while read line; do eval $line &>/dev/null; done}
+    cat ~/.histfile_color_result
+}
 }
 
 BASEDIR=$(dirname $0)
