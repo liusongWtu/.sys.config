@@ -78,9 +78,35 @@ function bsgrep()
 }
 
 function h(){
-    history | grep --color=always $1 | awk '{$1="";print $0}' | sort | uniq -c | sort -rn | awk '{$1="";print NR " " $0}' | tee ~/.histfile_color_result | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g" | awk '{$1="";print "function " NR "() {" $0 " }"}' | {while read line; do eval $line &>/dev/null; done}
-    cat ~/.histfile_color_result | sed '1!G;h;$!d'
+    history | grep --color=always $1 | awk '{$1="";print $0}' | # 查找关键字，去掉左侧的是数字 \
+    sort | uniq -c | sort -rn | awk '{$1="";print NR " " $0}' | # 先去重（需要排序）然后根据次数排序，再去掉次数 \
+    tee ~/.histfile_color_result | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g" |  # 把带有颜色的结果写入临时文件，然后去除颜色 \
+    awk '{$1="";print "function " NR "() {" $0 "; echo \": $(date +%s):0;"$0"\" >> ~/.histfile }"}' | # 构造 function，把 $0 写入到 histfile 中 \
+    {while read line; do eval $line &>/dev/null; done}  # 调用 eval，让 function 生效
+    cat ~/.histfile_color_result | sed '1!G;h;$!d' # 倒序输出，更容易看到第一条
 }
+
+function s() {
+    word=$1
+    cd ~/dev/DailyLearning
+    ls | xargs cat | gawk 'BEGIN{RS="### "} {if(tolower($0) ~ /'"$word"'/)print "###", $0}' | egrep --color=always -i "$word|$|^"
+}
+
+function pt() {
+    launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
+    export http_proxy=http://localhost:8123
+    export https_proxy=http://localhost:8123
+}
+
+# Android
+function aupdate() {
+     cd /tmp/1
+    if [ -e tieba-release.apk  ]; then
+        rm tieba-release.apk
+    fi
+    wget "http://ci.tieba.baidu.com/view/TBPP_Android/job/FC_Native_Android_Build_ICODE/""$1""/artifact/gen_apks/tieba-release.apk"
+    adb install -rg tieba-release.apk
 }
 
 BASEDIR=$(dirname $0)

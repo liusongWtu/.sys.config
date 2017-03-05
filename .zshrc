@@ -31,6 +31,11 @@ export NVM_DIR="/Users/zxy/.nvm"
 source ~/.nvm/nvm.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export CDPATH=/Users/zxy/dev/work
 
 source $(brew --prefix)/etc/profile.d/autojump.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
+alias logcat='adblogcat.py --ignore="eglCodecCommon" --ignore="OpenGLRenderer" --ignore="EGL_genymotion" --ignore="chromium" --ignore="libEGL" -i "dalvikvm" -i "top" -i "JDWP" -i "wpa_supplicant" -i "art"'
+
+export M2_HOME=~/apache-maven-3.3.9
+export PATH=$PATH:$M2_HOME/bin
