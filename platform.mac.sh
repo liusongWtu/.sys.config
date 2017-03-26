@@ -99,6 +99,11 @@ function pt() {
     export https_proxy=http://localhost:8123
 }
 
+mkcdir () {
+    mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
 # Android
 function aupdate() {
      cd /tmp/1
