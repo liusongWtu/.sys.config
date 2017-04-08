@@ -1,6 +1,6 @@
 # good experience with git.
 alias ga='git add'
-alias gai='git add -i'
+alias gai='git add -i'  #进入一个交互式终端模式
 alias gan='git_add_new_files'
 alias gap='git add -p'
 alias gau='git add -u'

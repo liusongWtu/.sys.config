@@ -2,7 +2,7 @@ plugins=(web-search bundler rake git osx)
 
 ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="af-magic"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,6 +29,8 @@ source ~/.sys.config/dirmark/zsh.sh
 export NVM_DIR="/Users/zxy/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 source ~/.nvm/nvm.sh
+
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export CDPATH=/Users/zxy/dev/work

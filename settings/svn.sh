@@ -1,8 +1,11 @@
 # good experience with svn.
 export SVN_EDITOR=vim
-alias st='svn st'
-alias sd='svn diff'
+alias sst='svn st'
+alias sdi='svn diff'
 alias sdv='svn diff|gvim -R -'
+alias sre='svn revert'
+alias scm='svn commit -m'
+alias sup= 'svn update'
 
 function svnRemoveDeletedFiles() {
     svn st|awk '/^!/ {print $2}'|sed 's#\\#\/#g'|while read -r file;
