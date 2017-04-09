@@ -1,3 +1,4 @@
+#加载~/.oh-my-zsh/plugins目录下的插件
 plugins=(web-search bundler rake git osx)
 
 ZSH=$HOME/.oh-my-zsh
