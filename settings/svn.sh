@@ -28,3 +28,7 @@ done
 function svnRepoUrl() {
     svn info "$*"| grep URL|sed -e s/URL:\ //g
 }
+
+function svnShowConflicts() {
+    svn st | grep -e '^C' -e '^?\s*C'
+}
