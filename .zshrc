@@ -1,11 +1,13 @@
 #加载~/.oh-my-zsh/plugins目录下的插件
-plugins=(web-search bundler rake git osx)
+plugins=(web-search bundler rake git osx zsh-autosuggestions)
 
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="af-magic"
 
 source $ZSH/oh-my-zsh.sh
+
+source ~/.bash_profile
 
 # The following lines were added by compinstall
 
