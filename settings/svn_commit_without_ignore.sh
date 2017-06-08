@@ -10,6 +10,7 @@ all_changed_files=` svn st|awk '$0 ~ /^A|^M|^D/ {print $2}'`
 
 #获取要提交的文件
 commit_files=""
+
 for file in $all_changed_files
 do
 	if [[ $ignore_file_string != *$file","* ]]; then
@@ -26,6 +27,9 @@ else
    message=$1
 fi
 
-svn commit -m $message $commit_files
+if [[ $commit_files != "" ]]; then
+	svn commit -m $message $commit_files
+fi
+
 
 

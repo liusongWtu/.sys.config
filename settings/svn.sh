@@ -27,7 +27,7 @@ alias sup= 'svn update'
 #提交除了ignore的changelist分组中的文件
 #用法：svnCommit "提交信息"
 function svnCommit(){
-	/Users/song/.sys.config/settings/svn_commit_without_ignore.sh $*
+	$_CONFIG_BASE/settings/svn_commit_without_ignore.sh $*
 }
 
 #提交work组及新添加文件
@@ -36,7 +36,7 @@ function svnCommitFiles() {
 	# # trap 'echo "before execute line:$LINENO, group=$group"' DEBUG
 	# #获取新添加的文件
 	# add_files=`svn st|awk '/^A/ {print $2} '|awk -v files="" '{ files=(files" "$0)}END{print files}'`
-	
+
 	# #设置提交组
 	# group=""
 	# if [ $# == 0 ]
@@ -48,7 +48,7 @@ function svnCommitFiles() {
 
 	# #获取group组中要提交的文件
 	# group_files=`svn st --cl $group|awk '/^M/ {print $2}'|awk  '{ files=(files" "$0)}END{print files}'`
-	
+
 	# length=${#group_files}
 	# group_files=${group_files:1:$length}
 	# echo $group_files
@@ -60,7 +60,7 @@ function svnCommitFiles() {
 	# #提交文件，add_files和group_files有重复也可以正常提交
 	# echo "svn commit -m 'svn test' $group_files"
 	# svn commit -m 'svn test' $group_files
-	/Users/song/.sys.config/settings/svn_commit.sh $*
+	$_CONFIG_BASE/settings/svn_commit.sh $*
 }
 
 function svnRemoveDeletedFiles() {
@@ -75,12 +75,12 @@ function svnAddUntrackedFiles() {
     svn st|awk '/^\?/ {print $2}'|sed 's#\\#\/#g'|while read -r file;
 do
     svn add --force "$file"
-    svn cl work "$file" 
+    svn cl work "$file"
     if [ -d $file ]
     then
-   		svn st $file|awk '/^A/ {print $2}'|sed 's#\\#\/#g'|xargs svn cl work 
+   		svn st $file|awk '/^A/ {print $2}'|sed 's#\\#\/#g'|xargs svn cl work
 	fi
-done    
+done
 
 }
 
@@ -110,6 +110,5 @@ function svnAddAllUnChangelistFiles() {
 # done
 
 # 法二
-	svn ls --recursive|sed 's#\\#\/#g'|xargs svn cl work 
+	svn ls --recursive|sed 's#\\#\/#g'|xargs svn cl work
 }
-
