@@ -1,7 +1,8 @@
 #!/bin/bash
 # good experience with svn.
 export SVN_EDITOR=vim
-alias sst='svn st|grep -v  -e "^\s"'
+# alias sst='svn st|grep -v  -e "^\s"'
+alias sst='svn st'
 alias sdi='svn diff'
 alias sdv='svn diff|gvim -R -'
 alias sre='svn revert'
@@ -22,7 +23,7 @@ alias svnclic='svn ci --cl ignore -m '
 alias svnclstw='svn st --cl work'
 alias svnclsti='svn st --cl ignore'
 
-alias sup= 'svn update'
+alias svnup= 'svn update'
 
 #提交除了ignore的changelist分组中的文件
 #用法：svnCommit "提交信息"
@@ -67,6 +68,13 @@ function svnRemoveDeletedFiles() {
     svn st|awk '/^!/ {print $2}'|sed 's#\\#\/#g'|while read -r file;
 do
     svn remove --force "$file"
+done
+}
+
+function svnRevertAll(){
+	svn st| awk '/^M/ {print $2}'|sed 's#\\#\/#g'|while read -r file;
+do
+	svn revert "$file"
 done
 }
 

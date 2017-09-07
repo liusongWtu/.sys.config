@@ -9,3 +9,5 @@ source "$ROOT"/locales.sh
 source "$ROOT"/misc.sh
 source "$ROOT"/svn.sh
 source "$ROOT"/my.sh
+source "$ROOT"/sql.sh
+

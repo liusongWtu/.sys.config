@@ -6,7 +6,7 @@
 ignore_file_string=`svn st --cl ignore|awk 'NR>2 {print $NF}'|awk -v files="" '{ files=(files$0",")}END{print files}'`
 
 #获取改变的文件的文件，这里暂且统计svn st后以 A,M,D开头的文件
-all_changed_files=` svn st|awk '$0 ~ /^A|^M|^D/ {print $2}'`
+all_changed_files=` svn st|awk '$1 ~ /^A|^M|^D/ {print $2}'`
 
 #获取要提交的文件
 commit_files=""
