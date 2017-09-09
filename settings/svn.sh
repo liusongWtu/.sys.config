@@ -64,6 +64,10 @@ function svnCommitFiles() {
 	$_CONFIG_BASE/settings/svn_commit.sh $*
 }
 
+function svnIgnoreCopy(){
+	$_CONFIG_BASE/settings/svn_ignore_copy_tool.sh $*
+}
+
 function svnRemoveDeletedFiles() {
     svn st|awk '/^!/ {print $2}'|sed 's#\\#\/#g'|while read -r file;
 do
