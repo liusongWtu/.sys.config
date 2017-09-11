@@ -3,7 +3,11 @@
 #使用：将dir1目录下所有ignore信息应用到dir2目录上
 #eg: ./svn_ignore_copy_tool.sh dir1 dir2
 
-
+if [ $# -lt 2 ]
+then
+    echo "参数不合法，示例：./svn_ignore_copy_tool.sh copiedDir destinationDir"
+    echo "copiedDir:被拷贝Ignore信息的目录；destinationDir：要设置忽略文件的目录"
+else
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IGNORE_TXT=`svn propget -R svn:ignore $1` 
@@ -11,20 +15,25 @@ IGNORE_TXT=`svn propget -R svn:ignore $1`
 echo "\"$1\"的忽略文件列表为："
 echo "$IGNORE_TXT"
 
-echo "------------------------------------------------"
+echo "---------------------------------------------------------------------------------------------"
 echo "\"$2\"应用后忽略列表为："
 IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s/^$1[[:space:]]+/$2 /g;s/^$1\//$2\//g")
 
 echo "$IGNORE_TXT"
-echo "------------------------------------------------"
+
+echo "---------------------------------------------------------------------------------------------"
 
 # 移除要忽略的文件
+echo '移除要忽略的文件：'
 echo "$IGNORE_TXT"|awk 'BEGIN{files="";parent=""} {if($1==""){} else if($2=="-"){ parent=$1;print parent"/"$3;} else { print parent"/"$1;}}'|sed 's#\\#\/#g'|while read -r file;
 do
     # echo $file
     svn remove --keep-local --force "$file"
 done
 
+# 设置忽略文件
+echo "---------------------------------------------------------------------------------------------"
+echo '设置忽略文件：'
 # 获取忽略文件参数，从第二个参数开始，第一个参数为忽略文件父目录
 embed_newline()
 {
@@ -51,6 +60,11 @@ do
     svn propset svn:ignore "$params" "$dir"
     echo "$params"
 done
+
+
+fi
+
+
 
 
 
