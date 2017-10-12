@@ -3,11 +3,12 @@
 #使用：将dir1目录下所有ignore信息应用到dir2目录上
 #eg: ./svn_ignore_copy_tool.sh dir1 dir2
 
-if [ $# -lt 2 ]
+if [ $# -ne 2 ]
 then
     echo "参数不合法，示例：./svn_ignore_copy_tool.sh copiedDir destinationDir"
     echo "copiedDir:被拷贝Ignore信息的目录；destinationDir：要设置忽略文件的目录"
-else
+    exit 1
+fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IGNORE_TXT=`svn propget -R svn:ignore $1` 
@@ -17,7 +18,10 @@ echo "$IGNORE_TXT"
 
 echo "---------------------------------------------------------------------------------------------"
 echo "\"$2\"应用后忽略列表为："
-IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s/^$1[[:space:]]+/$2 /g;s/^$1\//$2\//g")
+# IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s/^$1[[:space:]]+/$2 /g;s/^$1\//$2\//g")
+COPIED_DIR="$( cd $1&& pwd )"
+DESTINATION_DIR="$( cd $2&& pwd )"
+IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s#^$COPIED_DIR#$DESTINATION_DIR#g")
 
 echo "$IGNORE_TXT"
 
@@ -61,8 +65,6 @@ do
     echo "$params"
 done
 
-
-fi
 
 
 
