@@ -11,4 +11,5 @@ source "$ROOT"/svn.sh
 source "$ROOT"/my.sh
 source "$ROOT"/sql.sh
 source "$ROOT"/python.sh
+source "$ROOT"/tools.sh
 
