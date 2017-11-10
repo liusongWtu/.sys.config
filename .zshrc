@@ -44,3 +44,4 @@ alias logcat='adblogcat.py --ignore="eglCodecCommon" --ignore="OpenGLRenderer" -
 
 export M2_HOME=~/apache-maven-3.3.9
 export PATH=$PATH:$M2_HOME/bin
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"

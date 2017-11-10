@@ -20,8 +20,12 @@ echo "--------------------------------------------------------------------------
 echo "\"$2\"应用后忽略列表为："
 # IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s/^$1[[:space:]]+/$2 /g;s/^$1\//$2\//g")
 COPIED_DIR="$( cd $1&& pwd )"
+LAST_COPIED_DIR=${COPIED_DIR##*/}
 DESTINATION_DIR="$( cd $2&& pwd )"
-IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s#^$COPIED_DIR#$DESTINATION_DIR#g")
+LAST_DESTINATION_DIR=${DESTINATION_DIR##*/}
+# echo "LAST_COPIED_DIR: $LAST_COPIED_DIR"
+# echo "LAST_DESTINATION_DIR: $LAST_DESTINATION_DIR"
+IGNORE_TXT=$(echo "$IGNORE_TXT"|sed -E "s#^$LAST_COPIED_DIR#$LAST_DESTINATION_DIR#g")
 
 echo "$IGNORE_TXT"
 

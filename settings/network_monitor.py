@@ -4,7 +4,7 @@ import subprocess as sp
 
 
 if __name__ == '__main__':
-    cmd = "ping -c 3 www.baidu.com"
+    cmd = "ping -c 3 8.8.8.8"
     network_available_cmd = 'terminal-notifier -message "有网络了" -title "网络提示" -timeout 2'
 
     while True:
