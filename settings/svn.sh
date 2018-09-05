@@ -128,3 +128,7 @@ function svnAddAllUnChangelistFiles() {
 # 法二
 	svn ls --recursive|sed 's#\\#\/#g'|xargs svn cl work
 }
+
+function svnDiff(){
+	$_CONFIG_BASE/settings/svn_diff.sh $*
+}

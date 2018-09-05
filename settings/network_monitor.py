@@ -26,5 +26,5 @@ if __name__ == '__main__':
         else:
             current_time = datetime.datetime.now().strftime('%H:%M:%S')
             print("无网络:" + current_time)
-            time.sleep(60)
+            time.sleep(30)
 
