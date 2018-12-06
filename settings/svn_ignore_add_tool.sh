@@ -16,7 +16,10 @@ if [[ -d $1 ]]; then
     IGNORE_FILE=$(basename "$IGNORE_DIR")
     IGNORE_DIR=$(dirname $IGNORE_DIR)
     IGNORE_TXT=$(svn propget svn:ignore $IGNORE_DIR)
-    if [[ $IGNORE_TXT = *$IGNORE_FILE* ]]; then
+    REGEX="^"${IGNORE_FILE}"$"
+    MATCH_RESULT=$(svn pg svn:ignore $IGNORE_DIR|grep -E $REGEX)
+    if [[ -n "$MATCH_RESULT" ]]; then
+        echo -e "\n\n error: ignore file has been added."
         exit 0
     fi
     IGNORE_TXT="$IGNORE_TXT$NEWLINE$IGNORE_FILE"
