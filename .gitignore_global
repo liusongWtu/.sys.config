@@ -34,3 +34,5 @@ local.properties
 .gradle
 build
 *.patch
+
+settings/server_tools.sh
