@@ -12,4 +12,5 @@ source "$ROOT"/my.sh
 source "$ROOT"/sql.sh
 source "$ROOT"/python.sh
 source "$ROOT"/tools.sh
+source "$ROOT"/oss_tools.sh
 source "$ROOT"/server_tools.sh

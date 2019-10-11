@@ -22,4 +22,15 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
+
+# dirs
+alias cdwxgame_go='cd /Users/song/Server/go/wxgame_go'
+alias cdcjclient='cd /Users/song//work/xiaozi/jdcj/battle'
+alias cdcjdocuments='cd /Users/song/work/xiaozi/jdcj/jdcj/配置表'
+alias cdcjfight='cd /Users/song/work/xiaozi/jdcj/wxgame_go'
+alias cdcjmicro='cd /Users/song/work/xiaozi/jdcj/game_micro'
+
+# tool
+alias airportdpid=`ps aux | grep -v grep | grep /usr/libexec/airportd | awk '{print $2}'`
+alias kill9='sudo kill -9'
 #https://zhuanlan.zhihu.com/p/19556676

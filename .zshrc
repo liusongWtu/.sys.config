@@ -45,3 +45,25 @@ alias logcat='adblogcat.py --ignore="eglCodecCommon" --ignore="OpenGLRenderer" -
 export M2_HOME=~/apache-maven-3.3.9
 export PATH=$PATH:$M2_HOME/bin
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+
+
+# pyenv
+eval "$(pyenv init -)"
+
+
+# mysql
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql@5.7/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql@5.7/include"
+export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.7/lib/pkgconfig"
+
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
+# golang
+#GOPATH
+export GOPATH=$HOME/program/go/libs:$HOME/Works:$HOME/work/xiaozi/jdcj/wxgame_go:$HOME/work/xiaozi/jdcj/game_micro
+#GOPATH bin
+######## export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:${GOPATH//://bin:}/bin
+# GOPROXY
+export GOPROXY=https://mirrors.aliyun.com/goproxy/

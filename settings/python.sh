@@ -7,9 +7,9 @@ function py(){
 }
 
 function py2(){
-	py 2.7.10
+	py system
 }
 
 function py3(){
-	py 3.6.3
+	py 3.7.4
 }
