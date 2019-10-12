@@ -61,7 +61,7 @@ export PATH="/usr/local/opt/ncurses/bin:$PATH"
 
 # golang
 #GOPATH
-export GOPATH=$HOME/program/go/libs:$HOME/Works:$HOME/work/xiaozi/jdcj/wxgame_go:$HOME/work/xiaozi/jdcj/game_micro
+export GOPATH=$HOME/program/go/libs:$HOME/program/go/practice:$HOME/Works:$HOME/work/xiaozi/jdcj/wxgame_go:$HOME/work/xiaozi/jdcj/game_micro
 #GOPATH bin
 ######## export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:${GOPATH//://bin:}/bin
