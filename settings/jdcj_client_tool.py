@@ -10,11 +10,12 @@ import os
 import shutil
 import re
 
-sourceDir = "/Users/song/Works/games/battle/project/bin"
-rootDir = "/Users/song/Works/games/"
+sourceDir = "/Users/song/work/xiaozi/jdcj/battle/project/bin"
+rootDir = "/Users/song/work/xiaozi/jdcj/"
 env = sys.argv[1]
 dstDir = rootDir + sys.argv[2]
 tokenFile = dstDir + "/js/splash/SplashPage.js"
+teamIDFile = dstDir + "/js/home/HomeUI.js"
 if os.path.exists(dstDir):
     shutil.rmtree(dstDir)
 # 复制目录，目标目录必须不存在
@@ -33,6 +34,9 @@ print(r.content)
 data = r.json()
 
 userIndex = 0
+
+
+# 修改token
 if len(sys.argv) > 4:
     userIndex = int(sys.argv[4]) - 1
 token = data["data"]["Users"][userIndex]["Token"]
@@ -50,3 +54,21 @@ r = pat.sub(r'\g<1>' + token + '\g<2>' + token + '\g<3>', text)
 fp_i = open(tokenFile, 'w')
 fp_i.write(r)
 fp_i.close()
+
+# 修改teamID
+if len(sys.argv) > 5:
+    teamID = sys.argv[5]
+    # this.test.startGame(EnumBattleMode.SingleMelee, true, 's1_t_cf265996', false, '');
+    pat = re.compile(
+        r'(this\.test\.startGame\(EnumBattleMode\.SingleMelee\s*,\s*true\s*,\s*\')(.+)(\'\s*,\s*false\s*,\s*\'\'\);)')
+    
+    
+    fp_o = open(teamIDFile, 'r')
+    text = fp_o.read()
+    fp_o.close()
+
+    r = pat.sub(r'\g<1>'+teamID+r'\g<3>', text)
+    fp_i = open(teamIDFile, 'w')
+    fp_i.write(r)
+    fp_i.close()
+
